@@ -1,35 +1,24 @@
+'udr client';
+
 import { Note } from '@/types/note';
-import axios from 'axios';
+import { User } from '@/types/user';
+import { noteService } from './api';
 
-const API_KEY = process.env.NEXT_PUBLIC_NOTEHUB_TOKEN;
-
-const BASE_URL = 'https://notehub-public.goit.study/api/notes';
-
-// const baseURL = process.env.NEXT_PUBLIC_API_URL + '/api';
-
-/*     fetchNotes
-    fetchNoteById
-    createNote
-    deleteNote
-    register
-    login
-    logout
-    checkSession
-    getMe
+/*     fetchNotes+
+    fetchNoteById+
+    createNote+
+    deleteNote+
+    register+
+    login+
+    logout+
+    checkSession+
+    getMe+
     updateMe */
 
 export const PER_PAGE = 10;
 /* const API_ENDPOINTS = {
   SEARCH: '?search',
 }; */
-
-const noteService = axios.create({
-  baseURL: BASE_URL,
-  headers: {
-    accept: 'application/json',
-    Authorization: `Bearer ${API_KEY}`,
-  },
-});
 
 interface NotesResponse {
   notes: Note[];
@@ -76,5 +65,38 @@ export const deleteNote = async (noteId: Note['id']) => {
 
 export const fetchNoteById = async (noteId: Note['id']) => {
   const { data } = await noteService.get<Note>(`/${noteId}`);
+  return data;
+};
+
+export interface LogRegRequest {
+  email: string;
+  password: string;
+}
+
+export const register = async (userData: LogRegRequest) => {
+  const { data } = await noteService.post<User>('auth/register', userData);
+  return data;
+};
+
+export const logout = async (): Promise<void> => {
+  await noteService.post('/auth/logout');
+};
+
+export const login = async (userData: LogRegRequest) => {
+  const { data } = await noteService.post<User>('/auth/login', userData);
+  return data;
+};
+
+interface CheckSessionRequest {
+  success: boolean;
+}
+
+export const checkSession = async () => {
+  const { data } = await noteService.get<CheckSessionRequest>('/auth/session');
+  return data.success;
+};
+
+export const getMe = async () => {
+  const { data } = await noteService.get<User>('/auth/me');
   return data;
 };
