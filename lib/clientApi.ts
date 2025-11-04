@@ -1,18 +1,35 @@
 import { Note } from '@/types/note';
 import axios from 'axios';
 
-const baseURL = 'http://localhost:3000/api';
+const API_KEY = process.env.NEXT_PUBLIC_NOTEHUB_TOKEN;
 
-const noteService = axios.create({
-  baseURL,
-  withCredentials: true,
-});
+const BASE_URL = 'https://notehub-public.goit.study/api/notes';
 
-//================================================================
+// const baseURL = process.env.NEXT_PUBLIC_API_URL + '/api';
+
+/*     fetchNotes
+    fetchNoteById
+    createNote
+    deleteNote
+    register
+    login
+    logout
+    checkSession
+    getMe
+    updateMe */
+
 export const PER_PAGE = 10;
 /* const API_ENDPOINTS = {
   SEARCH: '?search',
 }; */
+
+const noteService = axios.create({
+  baseURL: BASE_URL,
+  headers: {
+    accept: 'application/json',
+    Authorization: `Bearer ${API_KEY}`,
+  },
+});
 
 interface NotesResponse {
   notes: Note[];
