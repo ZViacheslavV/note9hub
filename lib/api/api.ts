@@ -1,0 +1,18 @@
+import axios from 'axios';
+
+const baseURL = process.env.NEXT_PUBLIC_API_URL + '/api';
+
+export const API_ENDPOINTS = {
+  LOGIN: '/auth/login',
+  REGISTER: '/auth/register',
+  LOGOUT: '/auth/logout',
+  SESSION: '/auth/session',
+  NOTE_SEARCH_CREATE: '/notes',
+  NOTE_GET_EDIT_DELETE: '/notes/',
+  PROFILE_GET_UPDATE: '/users/me',
+};
+
+export const noteService = axios.create({
+  baseURL,
+  withCredentials: true,
+});

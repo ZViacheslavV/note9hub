@@ -3,9 +3,9 @@
 import { useRouter } from 'next/navigation';
 import css from './SignInPage.module.css';
 import { useState } from 'react';
-import { login, LogRegRequest } from '@/lib/clientApi';
-import { AxiosError } from 'axios';
+import { login, LogRegRequest } from '@/lib/api/clientApi';
 import { useAuthStore } from '@/lib/store/authStore';
+import { ApiError } from '@/app/api/api';
 
 const SignIn = () => {
   const router = useRouter();
@@ -19,11 +19,14 @@ const SignIn = () => {
 
       if (res) {
         setUser(res);
-        router.push('./profile');
+        router.push('/profile');
       } else setError('Invalid email or password');
     } catch (err) {
-      const error = err as AxiosError<{ error?: string }>;
-      setError(error.response?.data?.error ?? error.message ?? 'Oops something went wrong');
+      setError(
+        (err as ApiError).response?.data?.error ??
+          (err as ApiError).message ??
+          'Oops something went wrong'
+      );
     }
   };
 

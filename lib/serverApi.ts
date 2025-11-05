@@ -1,4 +1,0 @@
-/*     fetchNotes
-    fetchNoteById
-    getMe
-    checkSession. */

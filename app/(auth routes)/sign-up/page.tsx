@@ -3,9 +3,9 @@
 import { useRouter } from 'next/navigation';
 import css from './SignUpPage.module.css';
 import { useState } from 'react';
-import { register, LogRegRequest } from '@/lib/clientApi';
-import { AxiosError } from 'axios';
+import { register, LogRegRequest } from '@/lib/api/clientApi';
 import { useAuthStore } from '@/lib/store/authStore';
+import { ApiError } from '@/app/api/api';
 
 const SignUp = () => {
   const router = useRouter();
@@ -13,20 +13,28 @@ const SignUp = () => {
   const setUser = useAuthStore((state) => state.setUser);
 
   const handleSubmit = async (formData: FormData) => {
-    const formValues = Object.fromEntries(formData) as unknown as LogRegRequest;
-
     try {
+      const formValues = Object.fromEntries(formData) as unknown as LogRegRequest;
       const res = await register(formValues);
 
       if (res) {
         setUser(res);
+
+        console.log('User:', res); ///DEL
+
         router.push('/profile');
       } else {
         setError('Invalid email or password');
+
+        console.log('User:', res); ///DEL
       }
     } catch (err) {
-      const error = err as AxiosError<{ error?: string }>;
-      setError(error.response?.data?.error ?? error.message ?? 'Oops something went error');
+      /* const error = err as AxiosError<{ error?: string }>; */
+      setError(
+        (err as ApiError).response?.data?.error ??
+          (err as ApiError).message ??
+          'Oops something went error'
+      );
     }
   };
   return (

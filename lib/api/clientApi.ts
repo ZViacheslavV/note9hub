@@ -2,7 +2,7 @@
 
 import { Note } from '@/types/note';
 import { User } from '@/types/user';
-import { noteService } from './api';
+import { API_ENDPOINTS, noteService } from './api';
 
 /*     fetchNotes+
     fetchNoteById+
@@ -15,19 +15,16 @@ import { noteService } from './api';
     getMe+
     updateMe */
 
-export const PER_PAGE = 10;
-/* const API_ENDPOINTS = {
-  SEARCH: '?search',
-}; */
+export const PER_PAGE = 12;
 
-interface NotesResponse {
+export interface NotesResponse {
   notes: Note[];
   totalPages: number;
+  page: number;
+  perPage: number;
+  total: number;
 }
 
-//Function for cleaning objects from null, '', undefined
-/* const cleanParams = <T extends Record<string, unknown>>(obj: T): Partial<T> =>
-  Object.fromEntries(Object.entries(obj).filter(([, v]) => v != null && v !== '')) as Partial<T>; */
 export const cleanParams = <T extends object>(obj: T): Partial<T> =>
   Object.fromEntries(Object.entries(obj).filter(([, v]) => v != null && v !== '')) as Partial<T>;
 
@@ -36,35 +33,34 @@ export const fetchNotes = async (
   tag?: string | undefined,
   page: number = 1,
   perPage: number = PER_PAGE
-  /* sortBy: string = '' */
 ): Promise<NotesResponse> => {
   const params = cleanParams({
     search,
     tag,
     page,
     perPage,
-    /* sortBy, */
   });
 
   // console.log(params);
 
-  const { data } = await noteService.get<NotesResponse>('', { params });
-
+  const { data } = await noteService.get<NotesResponse>(`${API_ENDPOINTS.NOTE_SEARCH_CREATE}`, {
+    params,
+  });
   return data;
 };
 
 export const createNote = async (newNote: Pick<Note, 'title' | 'content' | 'tag'>) => {
-  const { data } = await noteService.post<Note>('', newNote);
+  const { data } = await noteService.post<Note>(`${API_ENDPOINTS.NOTE_SEARCH_CREATE}`, newNote);
   return data;
 };
 
 export const deleteNote = async (noteId: Note['id']) => {
-  const { data } = await noteService.delete<Note>(`/${noteId}`);
+  const { data } = await noteService.delete<Note>(`${API_ENDPOINTS.NOTE_GET_EDIT_DELETE}${noteId}`);
   return data;
 };
 
 export const fetchNoteById = async (noteId: Note['id']) => {
-  const { data } = await noteService.get<Note>(`/${noteId}`);
+  const { data } = await noteService.get<Note>(`${API_ENDPOINTS.NOTE_GET_EDIT_DELETE}${noteId}`);
   return data;
 };
 
@@ -74,17 +70,17 @@ export interface LogRegRequest {
 }
 
 export const register = async (userData: LogRegRequest) => {
-  const { data } = await noteService.post<User>('auth/register', userData);
+  const { data } = await noteService.post<User>(`${API_ENDPOINTS.REGISTER}`, userData);
+  return data;
+};
+
+export const login = async (userData: LogRegRequest) => {
+  const { data } = await noteService.post<User>(`${API_ENDPOINTS.LOGIN}`, userData);
   return data;
 };
 
 export const logout = async (): Promise<void> => {
-  await noteService.post('/auth/logout');
-};
-
-export const login = async (userData: LogRegRequest) => {
-  const { data } = await noteService.post<User>('/auth/login', userData);
-  return data;
+  await noteService.post(`${API_ENDPOINTS.LOGOUT}`);
 };
 
 interface CheckSessionRequest {
@@ -92,11 +88,11 @@ interface CheckSessionRequest {
 }
 
 export const checkSession = async () => {
-  const { data } = await noteService.get<CheckSessionRequest>('/auth/session');
+  const { data } = await noteService.get<CheckSessionRequest>(`${API_ENDPOINTS.SESSION}`);
   return data.success;
 };
 
 export const getMe = async () => {
-  const { data } = await noteService.get<User>('/auth/me');
+  const { data } = await noteService.get<User>(`${API_ENDPOINTS.PROFILE_GET_UPDATE}`);
   return data;
 };
