@@ -1,4 +1,4 @@
-import { NextRequest, NextResponse } from 'next/server';
+/* import { NextRequest, NextResponse } from 'next/server';
 import { api } from '../../api';
 import { cookies } from 'next/headers';
 import { parse } from 'cookie';
@@ -42,9 +42,9 @@ export async function POST(req: NextRequest) {
     logErrorResponse({ message: (error as Error).message });
     return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
   }
-}
+} */
 
-/* import { NextRequest, NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 import { api } from '../../api';
 import { cookies } from 'next/headers';
 import { parse } from 'cookie';
@@ -88,4 +88,3 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
   }
 }
- */

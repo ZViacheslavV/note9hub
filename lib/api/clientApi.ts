@@ -96,3 +96,13 @@ export const getMe = async () => {
   const { data } = await noteService.get<User>(`${API_ENDPOINTS.PROFILE_GET_UPDATE}`);
   return data;
 };
+
+interface UpdateProfile {
+  email?: string;
+  username?: string;
+}
+
+export const updateMe = async (userData: UpdateProfile) => {
+  const { data } = await noteService.patch<User>(`${API_ENDPOINTS.PROFILE_GET_UPDATE}`, userData);
+  return data;
+};

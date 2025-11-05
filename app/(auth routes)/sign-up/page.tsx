@@ -20,13 +20,13 @@ const SignUp = () => {
       if (res) {
         setUser(res);
 
-        console.log('User:', res); ///DEL
+        // console.log('User:', res); ///DEL
 
         router.push('/profile');
       } else {
         setError('Invalid email or password');
 
-        console.log('User:', res); ///DEL
+        // console.log('User:', res); ///DEL
       }
     } catch (err) {
       /* const error = err as AxiosError<{ error?: string }>; */
