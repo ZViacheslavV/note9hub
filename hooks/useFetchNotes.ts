@@ -1,6 +1,5 @@
-import { fetchNotes, PER_PAGE } from '@/lib/api/api';
+import { fetchNotes, PER_PAGE } from '@/lib/api/clientApi';
 import { useQuery, keepPreviousData } from '@tanstack/react-query';
-// import { fetchNotes, PER_PAGE } from '../services/noteService';
 
 interface UseFetchNotesOptions {
   search: string;
