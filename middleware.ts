@@ -2,8 +2,9 @@ import { NextRequest, NextResponse } from 'next/server';
 import { cookies } from 'next/headers';
 import { parse } from 'cookie';
 import { checkServerSession } from './lib/api/serverApi';
+import { ResponseCookie } from 'next/dist/compiled/@edge-runtime/cookies';
 
-const privateRoutes = ['/profile'];
+const privateRoutes = ['/profile', '/notes'];
 const publicRoutes = ['/sign-in', '/sign-up'];
 
 export async function middleware(request: NextRequest) {
@@ -24,7 +25,7 @@ export async function middleware(request: NextRequest) {
         const cookieArray = Array.isArray(setCookie) ? setCookie : [setCookie];
         for (const cookieStr of cookieArray) {
           const parsed = parse(cookieStr);
-          const options = {
+          const options: Partial<ResponseCookie> = {
             expires: parsed.Expires ? new Date(parsed.Expires) : undefined,
             path: parsed.Path,
             maxAge: Number(parsed['Max-Age']),
@@ -70,5 +71,5 @@ export async function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ['/profile/:path*', '/sign-in', '/sign-up'],
+  matcher: ['/profile/:path*', '/notes/:path*', '/sign-in', '/sign-up'],
 };
