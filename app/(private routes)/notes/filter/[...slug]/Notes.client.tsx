@@ -34,7 +34,11 @@ const NotesClient = ({ category }: NotesClientProps) => {
     queryKey: ['notes', { searchQuery, tag: category, page: currentPage, perPage: PER_PAGE }],
     queryFn: () => fetchNotes(searchQuery, category, currentPage, PER_PAGE),
     placeholderData: keepPreviousData,
-    refetchOnMount: false, //true - variant for new notes refetch?
+
+    refetchOnWindowFocus: false,
+    // retry: false,
+    staleTime: 30_000,
+    // refetchOnMount: false, //true - variant for new notes refetch?
   });
 
   return (
@@ -48,9 +52,6 @@ const NotesClient = ({ category }: NotesClientProps) => {
             onPageChange={setCurrentPage}
           />
         )}
-        {/* <button className={css.button} onClick={openModal}>
-          Create note +
-        </button> */}
         <Link className={css.button} href="/notes/action/create">
           Create note +
         </Link>
@@ -58,12 +59,6 @@ const NotesClient = ({ category }: NotesClientProps) => {
 
       {notes.length > 0 && <NoteList notes={notes} />}
       {!notes.length && !isFetching && !isError && <EmptyListMessage />}
-
-      {/* {isModalOpen && (
-        <Modal onClose={closeModal}>
-          <NoteForm onClose={closeModal} />
-        </Modal>
-      )} */}
     </div>
   );
 };

@@ -2,6 +2,27 @@ import Link from 'next/link';
 import css from './ProfilePage.module.css';
 import { getServerMe } from '@/lib/api/serverApi';
 import Image from 'next/image';
+import { Metadata } from 'next';
+import { GRAPH_IMAGE_URL, SITE_URL } from '@/lib/constants';
+
+export const metadata: Metadata = {
+  title: 'NoteHub · User profile',
+  description: 'View personal profile',
+  openGraph: {
+    title: 'NoteHub · User profile',
+    description: 'View personal profile',
+    url: `${SITE_URL}/profile`,
+    siteName: 'NoteHub',
+    images: [
+      {
+        url: GRAPH_IMAGE_URL,
+        width: 1200,
+        height: 630,
+        alt: 'Notebook image',
+      },
+    ],
+  },
+};
 
 const Profile = async () => {
   const { avatar, email, username } = await getServerMe();

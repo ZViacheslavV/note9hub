@@ -15,10 +15,10 @@ export const generateMetadata = async ({ params }: Props): Promise<Metadata> => 
   const descCategory = slug[0] === NOTES_FILTER_ALL ? 'All notes' : `${slug[0]} category`;
   // const {data} = await
   return {
-    title: descCategory,
+    title: `NoteHub · ${descCategory}`,
     description: `Notes filter: ${descCategory}`,
     openGraph: {
-      title: descCategory,
+      title: `NoteHub · ${descCategory}`,
       description: `Notes filter: ${descCategory}`,
       url: `${SITE_URL}/notes/filter/${slug[0]}`,
       siteName: 'NoteHub',

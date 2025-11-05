@@ -9,10 +9,10 @@ import { Metadata } from 'next';
 import { GRAPH_IMAGE_URL, SITE_URL } from '@/lib/constants';
 
 export const metadata: Metadata = {
-  title: '404 - Page not found',
+  title: 'NoteHub · 404 - Page not found',
   description: 'The page you are looking for does not exist',
   openGraph: {
-    title: '404 - Page not found',
+    title: 'NoteHub · 404 - Page not found',
     description: 'The page you are looking for does not exist',
     url: `${SITE_URL}/404`,
     siteName: 'NoteHub',

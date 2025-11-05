@@ -1,12 +1,13 @@
 /*     fetchNotes
     fetchNoteById
-    getMe
-    checkSession. */
+    getMe+
+    checkSession+ */
 
 import { cookies } from 'next/headers';
 import { API_ENDPOINTS, noteService } from './api';
 import { User } from '@/types/user';
 import { cleanParams, NotesResponse, PER_PAGE } from './clientApi';
+import { Note } from '@/types/note';
 
 export const checkServerSession = async () => {
   const cookieStore = await cookies();
@@ -35,6 +36,7 @@ export const fetchServerNotes = async (
   page: number = 1,
   perPage: number = PER_PAGE
 ): Promise<NotesResponse> => {
+  const cookieStore = await cookies();
   const params = cleanParams({
     search,
     tag,
@@ -44,6 +46,21 @@ export const fetchServerNotes = async (
 
   // console.log(params);
 
-  const { data } = await noteService.get<NotesResponse>('', { params });
+  const { data } = await noteService.get<NotesResponse>(`${API_ENDPOINTS.NOTE_SEARCH_CREATE}`, {
+    ...params,
+    headers: {
+      Cookie: cookieStore.toString(),
+    },
+  });
+  return data;
+};
+
+export const fetchServerNoteById = async (noteId: Note['id']) => {
+  const cookieStore = await cookies();
+  const { data } = await noteService.get<Note>(`${API_ENDPOINTS.NOTE_GET_EDIT_DELETE}${noteId}`, {
+    headers: {
+      Cookie: cookieStore.toString(),
+    },
+  });
   return data;
 };

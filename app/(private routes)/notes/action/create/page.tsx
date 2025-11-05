@@ -4,10 +4,10 @@ import { Metadata } from 'next';
 import { GRAPH_IMAGE_URL, SITE_URL } from '@/lib/constants';
 
 export const metadata: Metadata = {
-  title: 'Create new note',
+  title: 'NoteHub · Create new note',
   description: 'Creating a personal new note',
   openGraph: {
-    title: 'Create new note',
+    title: 'NoteHub · Create new note',
     description: 'Creating a personal new note',
     url: `${SITE_URL}/notes/action/create`,
     siteName: 'NoteHub',
