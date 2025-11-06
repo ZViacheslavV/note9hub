@@ -7,9 +7,16 @@ export const API_ENDPOINTS = {
   REGISTER: '/auth/register',
   LOGOUT: '/auth/logout',
   SESSION: '/auth/session',
-  NOTE_SEARCH_CREATE: '/notes',
-  NOTE_GET_EDIT_DELETE: '/notes/',
-  PROFILE_GET_UPDATE: '/users/me',
+  // NOTE_SEARCH_CREATE: '/notes',
+  NOTES_SEARCH: '/notes',
+  NOTES_CREATE: '/notes',
+  // NOTE_GET_EDIT_DELETE: '/notes/',
+  NOTE_GET: '/notes/',
+  NOTE_EDIT: '/notes/',
+  NOTE_DELETE: '/notes/',
+  // PROFILE_GET_UPDATE: '/users/me',
+  PROFILE_GET: '/users/me',
+  PROFILE_UPDATE: '/users/me',
 };
 
 export const noteService = axios.create({

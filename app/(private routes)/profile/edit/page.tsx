@@ -5,12 +5,18 @@ import css from './EditProfilePage.module.css';
 import { useEffect, useState } from 'react';
 import { getMe, updateMe } from '@/lib/api/clientApi';
 import { useRouter } from 'next/navigation';
+import { useAuthStore } from '@/lib/store/authStore';
+import { User } from '@/types/user';
 
 const EditProfile = () => {
   const router = useRouter();
   const [userName, setUserName] = useState('');
   const [email, setEmail] = useState('');
   const [avatar, setAvatar] = useState('/icon.svg');
+
+  // const [error, setError] = useState('');
+  const setUser = useAuthStore((state) => state.setUser);
+  const user: User | null = useAuthStore((state) => state.user);
 
   useEffect(() => {
     getMe().then((user) => {
@@ -28,8 +34,15 @@ const EditProfile = () => {
 
   const handleSaveUser = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    await updateMe({ username: userName, email });
-    handleExit();
+    try {
+      const refreshedUser: User = { ...user, username: userName, email, avatar };
+      setUser(refreshedUser);
+      // console.log(refreshedUser);
+      await updateMe({ username: userName, email });
+      handleExit();
+    } catch {
+      // setError(err);
+    }
   };
 
   return (

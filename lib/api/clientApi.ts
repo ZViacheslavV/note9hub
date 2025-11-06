@@ -4,17 +4,6 @@ import { Note } from '@/types/note';
 import { User } from '@/types/user';
 import { API_ENDPOINTS, noteService } from './api';
 
-/*     fetchNotes+
-    fetchNoteById+
-    createNote+
-    deleteNote+
-    register+
-    login+
-    logout+
-    checkSession+
-    getMe+
-    updateMe */
-
 export const PER_PAGE = 12;
 
 export interface NotesResponse {
@@ -43,24 +32,24 @@ export const fetchNotes = async (
 
   // console.log(params);
 
-  const { data } = await noteService.get<NotesResponse>(`${API_ENDPOINTS.NOTE_SEARCH_CREATE}`, {
+  const { data } = await noteService.get<NotesResponse>(`${API_ENDPOINTS.NOTES_SEARCH}`, {
     params,
   });
   return data;
 };
 
 export const createNote = async (newNote: Pick<Note, 'title' | 'content' | 'tag'>) => {
-  const { data } = await noteService.post<Note>(`${API_ENDPOINTS.NOTE_SEARCH_CREATE}`, newNote);
+  const { data } = await noteService.post<Note>(`${API_ENDPOINTS.NOTES_CREATE}`, newNote);
   return data;
 };
 
 export const deleteNote = async (noteId: Note['id']) => {
-  const { data } = await noteService.delete<Note>(`${API_ENDPOINTS.NOTE_GET_EDIT_DELETE}${noteId}`);
+  const { data } = await noteService.delete<Note>(`${API_ENDPOINTS.NOTE_DELETE}${noteId}`);
   return data;
 };
 
 export const fetchNoteById = async (noteId: Note['id']) => {
-  const { data } = await noteService.get<Note>(`${API_ENDPOINTS.NOTE_GET_EDIT_DELETE}${noteId}`);
+  const { data } = await noteService.get<Note>(`${API_ENDPOINTS.NOTE_GET}${noteId}`);
   return data;
 };
 
@@ -93,7 +82,7 @@ export const checkSession = async () => {
 };
 
 export const getMe = async () => {
-  const { data } = await noteService.get<User>(`${API_ENDPOINTS.PROFILE_GET_UPDATE}`);
+  const { data } = await noteService.get<User>(`${API_ENDPOINTS.PROFILE_GET}`);
   return data;
 };
 
@@ -103,6 +92,6 @@ interface UpdateProfile {
 }
 
 export const updateMe = async (userData: UpdateProfile) => {
-  const { data } = await noteService.patch<User>(`${API_ENDPOINTS.PROFILE_GET_UPDATE}`, userData);
+  const { data } = await noteService.patch<User>(`${API_ENDPOINTS.PROFILE_UPDATE}`, userData);
   return data;
 };

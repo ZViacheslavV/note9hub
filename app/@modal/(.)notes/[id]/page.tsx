@@ -1,8 +1,9 @@
-import { fetchNoteById } from '@/lib/api/clientApi';
+// import { fetchNoteById } from '@/lib/api/clientApi';
 import { dehydrate, HydrationBoundary, QueryClient } from '@tanstack/react-query';
 // import NoteDetailsClient from '../../../notes/[id]/NoteDetails.client';
 // import Modal from '@/components/Modal/Modal';
 import NotePreview from './NotePreview.client';
+import { fetchServerNoteById } from '@/lib/api/serverApi';
 /* import { GRAPH_IMAGE_URL, SITE_URL } from '@/lib/constants';
 import { Metadata } from 'next'; */
 
@@ -40,7 +41,7 @@ const NoteDetails = async ({ params }: Props) => {
 
   await queryClient.prefetchQuery({
     queryKey: ['note', id],
-    queryFn: () => fetchNoteById(id),
+    queryFn: () => fetchServerNoteById(id),
   });
 
   return (

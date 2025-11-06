@@ -1,31 +1,35 @@
-/*     fetchNotes
-    fetchNoteById
-    getMe+
-    checkSession+ */
-
 import { cookies } from 'next/headers';
 import { API_ENDPOINTS, noteService } from './api';
 import { User } from '@/types/user';
 import { cleanParams, NotesResponse, PER_PAGE } from './clientApi';
 import { Note } from '@/types/note';
 
-export const checkServerSession = async () => {
+interface CookieConfig {
+  headers: {
+    Cookie: string;
+  };
+}
+
+const cookieConfig = async (): Promise<CookieConfig> => {
   const cookieStore = await cookies();
-  const res = await noteService.get(`${API_ENDPOINTS.SESSION}`, {
+
+  return {
     headers: {
       Cookie: cookieStore.toString(),
     },
-  });
+  };
+};
+
+export const checkServerSession = async () => {
+  const res = await noteService.get<User | null>(`${API_ENDPOINTS.SESSION}`, await cookieConfig());
   return res;
 };
 
-export const getServerMe = async (): Promise<User> => {
-  const cookieStore = await cookies();
-  const { data } = await noteService.get(`${API_ENDPOINTS.PROFILE_GET_UPDATE}`, {
-    headers: {
-      Cookie: cookieStore.toString(),
-    },
-  });
+export const getServerMe = async () => {
+  const { data } = await noteService.get<User>(
+    `${API_ENDPOINTS.PROFILE_GET}`,
+    await cookieConfig()
+  );
 
   return data;
 };
@@ -36,7 +40,6 @@ export const fetchServerNotes = async (
   page: number = 1,
   perPage: number = PER_PAGE
 ): Promise<NotesResponse> => {
-  const cookieStore = await cookies();
   const params = cleanParams({
     search,
     tag,
@@ -46,21 +49,19 @@ export const fetchServerNotes = async (
 
   // console.log(params);
 
-  const { data } = await noteService.get<NotesResponse>(`${API_ENDPOINTS.NOTE_SEARCH_CREATE}`, {
+  const { data } = await noteService.get<NotesResponse>(`${API_ENDPOINTS.NOTES_SEARCH}`, {
     ...params,
-    headers: {
-      Cookie: cookieStore.toString(),
-    },
+    ...(await cookieConfig()),
   });
+  // console.log('Notes:', data);
   return data;
 };
 
 export const fetchServerNoteById = async (noteId: Note['id']) => {
-  const cookieStore = await cookies();
-  const { data } = await noteService.get<Note>(`${API_ENDPOINTS.NOTE_GET_EDIT_DELETE}${noteId}`, {
-    headers: {
-      Cookie: cookieStore.toString(),
-    },
-  });
+  const { data } = await noteService.get<Note>(
+    `${API_ENDPOINTS.NOTE_GET}${noteId}`,
+    await cookieConfig()
+  );
+  // console.log('Id:', data);
   return data;
 };
