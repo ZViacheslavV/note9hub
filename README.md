@@ -14,4 +14,4 @@ NoteHub focuses on clean architecture, reliable data flow, and a smooth user exp
 
 - **Vite** — fast local development
 
-- **Git** — version control & collaboration
+- **Git** — version control
