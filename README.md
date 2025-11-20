@@ -8,11 +8,11 @@ NoteHub focuses on clean architecture, reliable data flow, and a smooth user exp
 
 ## 🛠️ Tech Stack
 
-- **TypeScript** — static safety, predictable logic
-- **Next.js** / React — components, routing, SSR/CSR, advanced patterns
-- **REST API** — structured data exchange
-- **Vite** — fast local development
-- **Git** — version control
+- **TypeScript** – static safety, predictable logic
+- **Next.js** / React – components, routing, SSR/CSR, advanced patterns
+- **REST API** – structured data exchange
+- **Vite** – fast local development
+- **Git** – version control
 
 ## 🎼 Key Features
 - **Full-stack–ready foundation built** on Next.js 15 with server components, optimized routing, and modern app directory patterns.
