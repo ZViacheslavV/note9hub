@@ -4,7 +4,9 @@
 
 NoteHub focuses on clean architecture, reliable data flow, and a smooth user experience built on top of a robust TypeScript + Next.js foundation.
 
-🛠️ Tech Stack
+---
+
+🛠️ ## Tech Stack
 
 - **TypeScript** — static safety, predictable logic
 
