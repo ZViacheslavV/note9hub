@@ -6,7 +6,7 @@ NoteHub focuses on clean architecture, reliable data flow, and a smooth user exp
 
 ---
 
-🛠️ ## Tech Stack
+## 🛠️ Tech Stack
 
 - **TypeScript** — static safety, predictable logic
 
