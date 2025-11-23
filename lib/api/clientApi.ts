@@ -1,4 +1,4 @@
-'udr client';
+'use client';
 
 import { Note } from '@/types/note';
 import { User } from '@/types/user';
