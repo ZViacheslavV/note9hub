@@ -7,13 +7,15 @@
   background-color: #f5f5f5;
   color: #333;
   border: 1px solid #ccc;
-  padding: 8px 16px;
+  padding: 5px 0;
   font-size: 16px;
   border-radius: 8px;
   cursor: pointer;
   transition:
     background-color 0.3s ease,
     box-shadow 0.2s ease;
+
+  width: 145px;
 }
 
 .menuButton:hover {

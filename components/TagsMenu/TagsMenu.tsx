@@ -88,29 +88,3 @@ const TagsMenu = () => {
 };
 
 export default TagsMenu;
-
-/* import Link from 'next/link';
-import css from './TagsMenu.module.css';
-import { NOTES_FILTER_CATEGORIES } from '@/lib/constants';
-
-const TagsMenu = () => (
-  <div className={css.menuContainer}>
-    <button className={css.menuButton}>Notes ▾</button>
-    <ul className={css.menuList}>
-      <li className={css.menuItem}>
-        <Link href={`/notes/filter/All`} className={css.menuLink}>
-          All notes
-        </Link>
-      </li>
-      {NOTES_FILTER_CATEGORIES.map((category, i) => (
-        <li className={css.menuItem} key={'TagsMenu' + i}>
-          <Link href={`/notes/filter/${category}`} className={css.menuLink}>
-            {category}
-          </Link>
-        </li>
-      ))}
-    </ul>
-  </div>
-);
-
-export default TagsMenu; */
