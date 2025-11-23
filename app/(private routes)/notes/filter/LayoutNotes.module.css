@@ -2,10 +2,9 @@
   position: relative;
 }
 
-/* Sidebar поверх всього */
 .sidebar {
   position: fixed;
-  top: 0;
+  top: 0px;
   left: 0;
   width: 250px;
   height: 100vh;
@@ -20,14 +19,13 @@
 
   transform: translateX(-100%);
   transition: transform 0.25s ease;
-  z-index: 999; /* поверх контенту */
+  z-index: 1;
 }
 
 .sidebarVisible {
   transform: translateX(0);
 }
 
-/* контент більше не рухаємо */
 .notesWrapper {
   width: 100%;
 }
