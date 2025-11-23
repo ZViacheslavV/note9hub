@@ -16,9 +16,10 @@
   display: block;
   padding: 8px 16px;
   transition: background-color 0.3s ease;
+  border-radius: 8px;
 }
 
 .menuLink:hover {
-  background-color: #444;
+  background-color: rgba(13, 47, 158, 0.65);
   color: #ddd;
 }
