@@ -4,6 +4,7 @@ import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import css from './TagsMenu.module.css';
 import { NOTES_FILTER_CATEGORIES, NOTES_FILTER_ALL } from '@/lib/constants';
+import clsx from 'clsx';
 
 const TagsMenu = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -53,8 +54,37 @@ const TagsMenu = () => {
         {buttonText}
       </button>
 
-      {isOpen && (
-        <ul id="tags-menu-list" className={css.menuList} role="menu">
+      <ul id="tags-menu-list" className={clsx(css.menuList, { [css.open]: isOpen })} role="menu">
+        <li className={css.menuItem} role="none">
+          <Link
+            href={`/notes/filter/${NOTES_FILTER_ALL}`}
+            className={css.menuLink}
+            role="menuitem"
+            onClick={() => handleSelect(NOTES_FILTER_ALL)}
+          >
+            All notes
+          </Link>
+        </li>
+        {NOTES_FILTER_CATEGORIES.map((category, i) => (
+          <li className={css.menuItem} role="none" key={category + i}>
+            <Link
+              href={`/notes/filter/${category}`}
+              className={css.menuLink}
+              role="menuitem"
+              onClick={() => handleSelect(category)}
+            >
+              {category}
+            </Link>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+};
+
+export default TagsMenu;
+
+/* <ul id="tags-menu-list" className={css.menuList} role="menu">
           <li className={css.menuItem} role="none">
             <Link
               href={`/notes/filter/${NOTES_FILTER_ALL}`}
@@ -81,10 +111,4 @@ const TagsMenu = () => {
               </Link>
             </li>
           ))}
-        </ul>
-      )}
-    </div>
-  );
-};
-
-export default TagsMenu;
+        </ul> */
