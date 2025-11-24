@@ -12,9 +12,9 @@
   /* background: linear-gradient(180deg, #0a1f6a 0%, #0d2f9e 60%, #1976d2 100%); */
   background: linear-gradient(
     180deg,
-    rgba(10, 31, 106, 0.75) 0%,
-    rgba(13, 47, 158, 0.75) 50%,
-    rgba(25, 118, 210, 0.75) 100%
+    rgba(10, 31, 106, 0.55) 0%,
+    rgba(13, 47, 158, 0.55) 50%,
+    rgba(25, 118, 210, 0.55) 100%
   );
 
   color: white;

@@ -4,9 +4,9 @@
 }
 
 .menuButton {
-  background-color: #f5f5f5;
-  color: #333;
-  border: 1px solid #ccc;
+  background-color: #d4e1ff;
+  color: #0a1f6a;
+  border: 1px solid #0d2f9e;
   padding: 5px 0;
   font-size: 16px;
   border-radius: 8px;
@@ -14,12 +14,11 @@
   transition:
     background-color 0.3s ease,
     box-shadow 0.2s ease;
-
   width: 145px;
 }
 
 .menuButton:hover {
-  background-color: #eaeaea;
+  background-color: #b8d0ff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
@@ -27,7 +26,13 @@
   position: absolute;
   top: calc(100% + 6px);
   left: 0;
-  background-color: #333;
+  /* background-color: #333; */
+  background: linear-gradient(
+    180deg,
+    rgba(10, 31, 106, 0.55) 0%,
+    rgba(13, 47, 158, 0.55) 50%,
+    rgba(25, 118, 210, 0.55) 100%
+  );
   border: 1px solid #ddd;
   border-radius: 8px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
@@ -52,6 +57,7 @@
 }
 
 .menuLink:hover {
-  background-color: #f0f0f0;
+  /* background-color: #f0f0f0; */
+  background-color: rgba(13, 47, 158, 0.65);
   color: #333;
 }

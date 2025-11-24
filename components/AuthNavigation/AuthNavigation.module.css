@@ -17,13 +17,13 @@
     color 0.3s ease,
     box-shadow 0.2s ease;
 
-  padding: 5px 16px;
+  padding: 5px 10px;
   font-size: 16px;
 }
 
 .logoutButton:hover {
-  background-color: white;
-  color: #333;
+  background-color: #b8d0ff;
+  color: #0a1f6a;
 }
 
 .navigationItem {

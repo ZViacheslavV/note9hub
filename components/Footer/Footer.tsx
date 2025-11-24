@@ -4,9 +4,8 @@ const Footer = () => (
   <footer className={css.footer}>
     <div className={css.content}>
       <p>© {new Date().getFullYear()} NoteHub</p>
-      <div className={css.wrap}>
-        <p>Developer: Viacheslav Zykov</p>
-      </div>
+      <p>Developer: Viacheslav Zykov</p>
+      {/* <div className={css.wrap}></div> */}
     </div>
   </footer>
 );
