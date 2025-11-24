@@ -48,9 +48,12 @@ const NotePreview = () => {
             <h2>{note.title}</h2>
           </div>
           <p className={css.content}>{note.content}</p>
-          <p className={css.date}>{formattedDate}</p>
+
+          <div className={css.tagWrapper}>
+            <span className={css.tag}>{note.tag}</span>
+            <p className={css.date}>{formattedDate}</p>
+          </div>
         </div>
-        <span className={css.tag}>{note.tag}</span>
       </div>
       <button onClick={closeModal} className={css.backBtn}>
         Close
