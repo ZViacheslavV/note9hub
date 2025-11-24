@@ -4,7 +4,13 @@
   align-items: center;
   padding: 1rem 2rem;
   /* background: linear-gradient(90deg, #0a1f6a 0%, #0d2f9e 40%, #1976d2 100%); */
-  background: linear-gradient(90deg, #0d298d 0%, #113ac1 40%, #1d89f5 100%);
+  /* background: linear-gradient(90deg, #0d298d 0%, #113ac1 40%, #1d89f5 100%); */
+  background: linear-gradient(
+    90deg,
+    rgba(13, 41, 141, 0.85) 0%,
+    rgba(17, 58, 193, 0.85) 40%,
+    rgba(29, 137, 245, 0.85) 100%
+  );
   color: white;
   height: 33px;
   z-index: 100;
