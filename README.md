@@ -6,6 +6,7 @@
 </a>
 
 </br>
+</br>
 
 > A secure, modern application for creating, organizing, and browsing personal notes with full authentication support.
 
