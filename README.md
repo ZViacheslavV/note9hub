@@ -1,5 +1,7 @@
 ## 📝 [NoteHub (web application)](https://09-auth-rho-six.vercel.app)
 
+<img src="assets/noteApp.png" width="1100" height="500" alt="App Baby"/>
+
 > A secure, modern application for creating, organizing, and browsing personal notes with full authentication support.
 
 NoteHub focuses on clean architecture, reliable data flow, and a smooth user experience built on top of a robust TypeScript + Next.js foundation.
