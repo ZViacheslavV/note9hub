@@ -1,6 +1,6 @@
 ## 📝 [NoteHub (web application)](https://09-auth-rho-six.vercel.app)
 
-<img src="assets/noteApp.png" width="1100" height="500" alt="App Baby"/>
+<img src="assets/note-app.png" width="1100" alt="App Note"/>
 
 > A secure, modern application for creating, organizing, and browsing personal notes with full authentication support.
 
@@ -17,6 +17,7 @@ NoteHub focuses on clean architecture, reliable data flow, and a smooth user exp
 - **Git** – version control
 
 ## 🎼 Key Features
+
 - **Full-stack–ready foundation built** on Next.js 15 with server components, optimized routing, and modern app directory patterns.
 - **Strict TypeScript architecture** ensuring type-safety across components, hooks, API layers, and forms.
 - **Secure authentication system** with cookie-based session handling and protected routes.
@@ -26,8 +27,9 @@ NoteHub focuses on clean architecture, reliable data flow, and a smooth user exp
 - **Robust form management** powered by Formik + Yup for validation schemas.
 - **High scalability** thanks to consistent coding standards (ESLint + Prettier), modular structure, and Route Interceptions/Parallel Routes capabilities.
 - **Fast development workflow** supported by TypeScript, ESLint, Prettier, and hot reloading.
-  
+
 ## 💥 Implemented Functionality
+
 - **Built secure user authentication** (login, session handling, route protection) with cookie-based workflows and structured API handlers.
 - **Implemented full CRUD interaction flow** for creating, viewing, and browsing personal notes.
 - **Integrated React Query** to manage asynchronous operations with caching, refetch logic, error boundaries, and stale-while-revalidate behavior.
