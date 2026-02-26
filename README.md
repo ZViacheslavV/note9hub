@@ -5,6 +5,9 @@
   <img src="assets/note-app.png" width="1100" alt="App Note"/>
 </a>
 
+</br>
+</br>
+
 > A secure, modern application for creating, organizing, and browsing personal notes with full authentication support.
 
 NoteHub focuses on clean architecture, reliable data flow, and a smooth user experience built on top of a robust TypeScript + Next.js foundation.
