@@ -1,6 +1,6 @@
 ## 📝 [NoteHub (web application)](https://09-auth-rho-six.vercel.app)
 
-<img src="img/app.png" width="1100" alt="App Orchestra"/>
+<img src="assets/note-app.png" width="1100" alt="App Note"/>
 
 > A secure, modern application for creating, organizing, and browsing personal notes with full authentication support.
 
